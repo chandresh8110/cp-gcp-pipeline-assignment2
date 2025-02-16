@@ -1,0 +1,15 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'build', 
+      '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/cp-100925696/my-app:$SHORT_SHA', 
+      '.'
+    ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'push', 
+      'us-central1-docker.pkg.dev/$PROJECT_ID/cp-10095696/my-app:$SHORT_SHA'
+    ]
+
+options:
+  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
