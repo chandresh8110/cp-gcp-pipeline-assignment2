@@ -1,15 +1,19 @@
 steps:
+  # Step 1: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args: [
       'build', 
       '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/cp-100925696/my-app:$SHORT_SHA', 
       '.'
     ]
+
+  # Step 2: Push the Docker image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: [
       'push', 
-      'us-central1-docker.pkg.dev/$PROJECT_ID/cp-10095696/my-app:$SHORT_SHA'
+      'us-central1-docker.pkg.dev/$PROJECT_ID/cp-100925696/my-app:$SHORT_SHA'
     ]
 
 options:
+  # Configure Cloud Build to use a regional, user-owned bucket for build logs
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
